@@ -5,6 +5,7 @@ on:
 jobs:
   get-modified-templates:
     runs-on: ubuntu-latest
+    environment: Production
     steps:
       - name: Download files from the current repository
         uses: actions/checkout@v2
