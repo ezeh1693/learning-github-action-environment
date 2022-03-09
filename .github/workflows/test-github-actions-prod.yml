@@ -1,15 +1,6 @@
 name: GitHub Actions prod Demo
 on:
   workflow_dispatch:
-    inputs:
-      name:
-        description: 'Build prod'
-        required: false
-        default: 'Mona the Octocat'
-      home:
-        description: 'location'
-        required: false
-        default: 'The Octoverse'
 
 jobs:
   get-modified-templates:
