@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo "Successfully executed dynamically generated script name for Andela"
+echo "Modified template"
 echo "My secret Name: $MY_SECRET_NAME"
 echo "My Secret: $MY_SECRET"
 
