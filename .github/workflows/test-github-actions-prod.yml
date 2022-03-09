@@ -47,6 +47,7 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - name: Execute dynamically generated script name
         env:
+          PROD_KEY: ${{ secrets.PROD_KEY }}
           MY_SECRET_NAME: DEV_${{ steps.change-string-case.outputs.uppercase }}_SECRET
         run: |
           export MY_SECRET="${{ secrets[env.MY_SECRET_NAME] }}"
