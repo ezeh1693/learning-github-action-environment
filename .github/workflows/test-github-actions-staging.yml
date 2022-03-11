@@ -56,7 +56,7 @@ jobs:
 
   Explore-Production-Actions:
     environment: Production
-    needs: get-modified-templates
+    needs: [get-modified-templates, Explore-Staging-Actions]
     runs-on: ubuntu-latest
     strategy:
       matrix:
