@@ -51,7 +51,7 @@ jobs:
           MY_SECRET_NAME: DEV_${{ steps.change-string-case.outputs.uppercase }}_SECRET
         run: |
           export MY_SECRET="${{ secrets[env.MY_SECRET_NAME] }}"
-          bash "./templates/${{ matrix.template }}_template/echoStuffs.sh"
+          bash "./templates/${{ matrix.template }}/echoStuffs.sh"
           
           
 
