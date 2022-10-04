@@ -19,3 +19,4 @@ jobs:
     with:
       workspace: andela
     secrets: inherit
+    run: echo "workspace input ${{ inputs.workspace }}"
