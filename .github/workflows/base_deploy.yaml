@@ -17,9 +17,9 @@ jobs:
       - name: Checkout the changes
         uses: actions/checkout@v2
       - name: Deploy Changes
-      - uses: oNaiPs/secrets-to-env-action@v1
-      with:
-        secrets: ${{ toJSON(secrets) }}
-        run: |
-          bash ./echo-env.sh
+        uses: oNaiPs/secrets-to-env-action@v1
+        with:
+          secrets: ${{ toJSON(secrets) }}
+          run: |
+            bash ./echo-env.sh
 
