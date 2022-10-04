@@ -19,6 +19,7 @@ jobs:
       - name: Deploy Changes
         env:
           ANDELA_ID_SECRET: ${{secrets.ANDELA_ID_SECRET}}
-        run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-
+        - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+        - run: echo "ANDELA ID SECRET ${{ ANDELA_ID_SECRET }}"
+        - run: echo "GOOGLE_ANDELA_CLIENT_SECRET ${{ GOOGLE_ANDELA_CLIENT_SECRET }}"
 
