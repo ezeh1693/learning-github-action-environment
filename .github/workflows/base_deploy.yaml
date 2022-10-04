@@ -19,5 +19,6 @@ jobs:
       - name: Deploy Changes
         env:
           ANDELA_ID_SECRET: ${{secrets.ANDELA_ID_SECRET}}
-        run: echo "🎉 The job was automatically triggered by a ${{ secrets.GOOGLE_SECRET }} event."
+        run: |
+          bash ./echo-env.sh
 
