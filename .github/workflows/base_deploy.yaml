@@ -19,6 +19,7 @@ jobs:
       - name: Deploy Changes
         env:
           ANDELA_ID_SECRET: ${{secrets.ANDELA_ID_SECRET}}
+          GOOGLE_ANDELA_CLIENT_SECRET: ${{secrets.GOOGLE_ANDELA_CLIENT_SECRET}}
         run: |
           bash ./echo-env.sh
 
