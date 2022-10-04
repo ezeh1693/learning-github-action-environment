@@ -4,28 +4,12 @@ on:
     branches: [main]
 
 jobs:
-  get-modified-templates:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download files from the current repository
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - id: set-modified-templates
-        run: |
-          bash --version
-          bash ./pr-diff.sh dev
-    outputs:
-      matrix: ${{ steps.set-modified-templates.outputs.matrix }}
-
-
   Explore-GitHub-Actions:
     needs: get-modified-templates
     runs-on: ubuntu-latest
     strategy:
       matrix:
         template: ${{ fromJson(needs.get-modified-templates.outputs.matrix) }}
-
     steps:
       - id: change-string-case
         uses: ASzc/change-string-case-action@v2
@@ -51,3 +35,11 @@ jobs:
           MY_SECRET_NAME: DEV_${{ steps.change-string-case.outputs.uppercase }}_SECRET
         run: |
           export MY_SECRET="${{ secrets[env.MY_SECRET_NAME] }}"
+  deploy-file-testing:
+    uses: ./.github/workflows/andela_deploy.yaml
+    with:
+      workspace: andela
+    secrets:
+      ANDELA_ID_SECRET: "open andela ID secret"
+      GOOGLE_ANDELA_CLIENT_SECRET: "open Google andela client secret"
+
