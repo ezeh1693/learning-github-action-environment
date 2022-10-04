@@ -17,8 +17,9 @@ jobs:
       - name: Checkout the changes
         uses: actions/checkout@v2
       - name: Deploy Changes
-        env:
-          ANDELA_ID_SECRET: ${{secrets.ANDELA_ID_SECRET}}
+      - uses: oNaiPs/secrets-to-env-action@v1
+      with:
+        secrets: ${{ toJSON(secrets) }}
         run: |
           bash ./echo-env.sh
 
