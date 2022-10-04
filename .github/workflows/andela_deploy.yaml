@@ -1,4 +1,4 @@
-name: Deploy Auth0 Tenant
+name: Deploy Auth0 Andela Tenant Test
 on:
   workflow_call:
     inputs:
@@ -13,7 +13,6 @@ on:
       GOOGLE_ANDELA_CLIENT_SECRET:
         required: false
         description: 'Optional: Google Andela Connection Client Secret.'
-
 jobs:
   call-deploy-auth0-tenant:
     uses: ./.github/workflows/base_deploy.yaml

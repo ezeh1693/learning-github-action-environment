@@ -1,4 +1,4 @@
-name: Deploy Auth0 Tenant Test
+name: Deploy base workflow
 on:
   workflow_call:
     inputs:
@@ -10,7 +10,6 @@ on:
       ANDELA_ID_SECRET:
         required: false
         description: 'Optional: Andela Id Connection Client Secret.'
-
 jobs:
   deploy-auth0-tenant:
     runs-on: ubuntu-latest
@@ -20,10 +19,6 @@ jobs:
       - name: Deploy Changes
         env:
           ANDELA_ID_SECRET: ${{secrets.ANDELA_ID_SECRET}}
-        - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-        - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-        - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-        - run: echo "ANDELA ID SECRET ${{ ANDELA_ID_SECRET }}"
-        - run: echo "GOOGLE_ANDELA_CLIENT_SECRET ${{ GOOGLE_ANDELA_CLIENT_SECRET }}"
-        - run: echo "workspace input ${{ inputs.workspace }}"
+        run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+
 
