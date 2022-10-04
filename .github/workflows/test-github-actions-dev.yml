@@ -9,6 +9,5 @@ jobs:
     with:
       workspace: andela
     secrets:
-      ANDELA_ID_SECRET: "open andela ID secret"
       GOOGLE_ANDELA_CLIENT_SECRET: "open Google andela client secret"
 

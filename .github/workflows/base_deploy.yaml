@@ -8,7 +8,7 @@ on:
         description: 'The npm workspace name of the tenant you want to deploy.'
     secrets:
       ANDELA_ID_SECRET:
-        required: false
+        required: true
         description: 'Optional: Andela Id Connection Client Secret.'
 jobs:
   deploy-auth0-tenant:
