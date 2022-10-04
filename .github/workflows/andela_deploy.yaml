@@ -16,4 +16,6 @@ on:
 jobs:
   call-deploy-auth0-tenant:
     uses: ./.github/workflows/base_deploy.yaml
+    with:
+      workspace: andela
     secrets: inherit
