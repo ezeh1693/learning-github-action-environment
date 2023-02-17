@@ -21,7 +21,6 @@ jobs:
           eol=$'\n'
           output="${output//$'%0A'/$eol}"
           echo "$output"
-          echo "value=$output" >> $GITHUB_OUTPUT
           
           echo "value<<EOF" >> $GITHUB_OUTPUT
           echo "$output" >> $GITHUB_OUTPUT
