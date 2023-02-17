@@ -20,11 +20,11 @@ jobs:
         with:
           source: "AUTH0_CLIENT_SECRET:projects/315290456177/secrets/auth0-bcbsaz-clientSecret/versions/1%0ASENDGRID_API_KEY:projects/315290456177/secrets/auth0-sendgrid-api-key/versions/1%0AKONG_API_KEY:projects/315290456177/secrets/auth0_internal_api_key/versions/1"
           find: '%0A'
-          replace: '\n'
+          replace: '\\n'
           replaceAll: 'true'
       - name: Show replacement
         id: show-replacement
-        run: echo "The replaced string is ${{ steps.get-secrets-as-multiline-string.outputs.value }}"
+        run: echo ${{ steps.get-secrets-as-multiline-string.outputs.value }}
       - name: Checkout the changes
         uses: actions/checkout@v2
       - name: Secret to envs
