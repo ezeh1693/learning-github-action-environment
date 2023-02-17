@@ -19,7 +19,7 @@ jobs:
         run: |-
           output="AUTH0_CLIENT_SECRET:projects/315290456177/secrets/auth0-bcbsaz-clientSecret/versions/1%0ASENDGRID_API_KEY:projects/315290456177/secrets/auth0-sendgrid-api-key/versions/1%0AKONG_API_KEY:projects/315290456177/secrets/auth0_internal_api_key/versions/1"
           output="${output//$'%0A'/'\n'}"
-          echo "$output
+          echo "$output"
           echo "value=$output" >> $GITHUB_OUTPUT
       - name: Show replacement
         id: show-replacement
