@@ -22,9 +22,9 @@ jobs:
           output="${output//$'%0A'/$eol}"
           echo "$output"
           
-          echo "value<<EOF" >> $GITHUB_OUTPUT
+          echo "value<<\n" >> $GITHUB_OUTPUT
           echo "$output" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          echo "\n" >> $GITHUB_OUTPUT
       - name: Show replacement
         id: show-replacement
         run: echo ${{ steps.get-secrets-as-multiline-string.outputs.value }}
