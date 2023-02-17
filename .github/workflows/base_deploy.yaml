@@ -14,6 +14,17 @@ jobs:
   deploy-auth0-tenant:
     runs-on: ubuntu-latest
     steps:
+      - name: Remove unneeded line-break character
+        id: get-secrets-as-multiline-string
+        uses: mad9000/actions-find-and-replace-string@2
+        with:
+          source: "AUTH0_CLIENT_SECRET:projects/315290456177/secrets/auth0-bcbsaz-clientSecret/versions/1%0ASENDGRID_API_KEY:projects/315290456177/secrets/auth0-sendgrid-api-key/versions/1%0AKONG_API_KEY:projects/315290456177/secrets/auth0_internal_api_key/versions/1"
+          find: '%0A'
+          replace: '\n'
+          replaceAll: 'true'
+      - name: Show replacement
+        id: show-replacement
+        run: echo ${{ steps.get-secrets-as-multiline-string.output.value }}
       - name: Checkout the changes
         uses: actions/checkout@v2
       - name: Secret to envs
