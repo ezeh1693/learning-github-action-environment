@@ -1,0 +1,40 @@
+name: Deploy base workflow
+on:
+  workflow_call:
+    inputs:
+      workspace:
+        required: true
+        type: string
+        description: 'The npm workspace name of the tenant you want to deploy.'
+    secrets:
+      ANDELA_ID_SECRET:
+        required: true
+        description: 'Optional: Andela Id Connection Client Secret.'
+jobs:
+  deploy-auth0-tenant:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Remove unneeded line-break character
+        id: get-secrets-as-multiline-string
+        run: |-
+          output="AUTH0_CLIENT_SECRET:projects/315290456177/secrets/auth0-bcbsaz-clientSecret/versions/1%0ASENDGRID_API_KEY:projects/315290456177/secrets/auth0-sendgrid-api-key/versions/1%0AKONG_API_KEY:projects/315290456177/secrets/auth0_internal_api_key/versions/1"
+          eol=$'\n'
+          output="${output//$'%0A'/$eol}"
+          echo "$output"
+          
+          echo "value<<\n" >> $GITHUB_OUTPUT
+          echo "$output" >> $GITHUB_OUTPUT
+          echo EOF >> $GITHUB_OUTPUT
+      - name: Show replacement
+        id: show-replacement
+        run: echo "${{ steps.get-secrets-as-multiline-string.outputs.value }}"
+      - name: Checkout the changes
+        uses: actions/checkout@v2
+      - name: Secret to envs
+        uses: oNaiPs/secrets-to-env-action@v1
+        with:
+          secrets: ${{ toJSON(secrets) }}
+      - name: Deploy Changes
+        run: |
+          bash ./echo-env.sh
+

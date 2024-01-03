@@ -1,0 +1,21 @@
+name: Deploy Auth0 Andela Tenant Test
+on:
+  workflow_call:
+    inputs:
+      workspace:
+        required: true
+        type: string
+        description: 'The npm workspace name of the tenant you want to deploy.'
+    secrets:
+      ANDELA_ID_SECRET:
+        required: false
+        description: 'Optional: Andela Id Connection Client Secret.'
+      GOOGLE_ANDELA_CLIENT_SECRET:
+        required: false
+        description: 'Optional: Google Andela Connection Client Secret.'
+jobs:
+  call-deploy-auth0-tenant:
+    uses: ./.github/workflows/base_deploy.yaml
+    with:
+      workspace: andela
+    secrets: inherit

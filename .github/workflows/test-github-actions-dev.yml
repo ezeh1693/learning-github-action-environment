@@ -4,50 +4,11 @@ on:
     branches: [main]
 
 jobs:
-  get-modified-templates:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download files from the current repository
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - id: set-modified-templates
-        run: |
-          bash --version
-          bash ./pr-diff.sh dev
-    outputs:
-      matrix: ${{ steps.set-modified-templates.outputs.matrix }}
+  deploy-file-testing:
+    uses: ./.github/workflows/andela_deploy.yaml
+    with:
+      workspace: andela
+    secrets:
+      ANDELA_ID_SECRET: "open andela ID secret"
+      GOOGLE_ANDELA_CLIENT_SECRET: "open Google andela client secret"
 
-
-  Explore-GitHub-Actions:
-    needs: get-modified-templates
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        template: ${{ fromJson(needs.get-modified-templates.outputs.matrix) }}
-
-    steps:
-      - id: change-string-case
-        uses: ASzc/change-string-case-action@v2
-        with:
-          string: ${{ matrix.template }}
-      - id: step2
-        run: echo ${{ steps.change-string-case.outputs.lowercase }}
-      - run: echo "Currently running ${{ matrix.template }} Application"
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
-      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
-      - name: Check out repository code
-        uses: actions/checkout@v2
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - run: echo "Run when event is on pull_request into dev only"
-      - name: List files in the repository
-        run: |
-          ls ${{ github.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
-      - name: Execute dynamically generated script name
-        env:
-          MY_SECRET_NAME: DEV_${{ steps.change-string-case.outputs.uppercase }}_SECRET
-        run: |
-          export MY_SECRET="${{ secrets[env.MY_SECRET_NAME] }}"
