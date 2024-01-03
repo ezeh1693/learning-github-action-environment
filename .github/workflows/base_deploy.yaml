@@ -27,7 +27,7 @@ jobs:
           echo "\n" >> $GITHUB_OUTPUT
       - name: Show replacement
         id: show-replacement
-        run: echo ${{ steps.get-secrets-as-multiline-string.outputs.value }}
+        run: echo "${{ steps.get-secrets-as-multiline-string.outputs.value }}"
       - name: Checkout the changes
         uses: actions/checkout@v2
       - name: Secret to envs
